@@ -45,12 +45,12 @@ bool logic_takeDose() {
  */
 bool logic_refill() {
     //must be a posiitve amount
-    pillRemaining = precription;
+    pillRemaining = prescription;
 }
 
 /**
  * @brief Checks if a medication is low on stock.
  */
 bool logic_checkLowStock(int pillIndex) {
-    return pillRemaining <= LOW_STOCK_THRESHOLD;
+    return pillRemaining <= LOW_STOCK_LIMIT;
 }

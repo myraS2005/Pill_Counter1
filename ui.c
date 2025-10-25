@@ -21,6 +21,8 @@
 #define CLEAR "clear"
 #endif
 
+int choice = 0;
+
 void clearscreen() {
 	system(CLEAR);
 }
@@ -37,7 +39,7 @@ void printWelcomeMessage() {
 }
 
 int main() {
-	int choice;
+	//int choice;
 	do {
 		printWelcomeMessage();
 		displayStatus();
@@ -80,7 +82,7 @@ int main() {
         	       getchar(); getchar(); // Wait for user input
 	        }
 
-	} while (choice != 4);
+	} while (choice != 4); 
 	return 0;
 }
 
@@ -88,24 +90,21 @@ void showlowpillWarning(int remaining) { // print warning message for less pills
 	if (remaining < 5) {
 		printf(COLOR_RED "⚠️  Warning: Only %d pills remaining! Please refill soon.\n"COLOR_RESET, remaining);
 	}
-}
- }
-
-                // check the choice entered
-                if (choice != 4) {
+        // check the choice entered
+        if (choice != 4) {
                        printf("\nPress Enter to continue...");
                        getchar(); getchar(); // Wait for user input
-                }
+        }
 
-        } while (choice != 4);
 }
+
 void displayStatus() { // show the status of the total pills and dose.
 	extern int pillRemaining;
 	extern int dailyDose;
-	printf(COLOR_YELLOW pillRemaining"Pills remaining: %d\n" COLOR_RESET, currentPills);
+	printf(COLOR_YELLOW "Pills remaining: %d\n" COLOR_RESET, pillRemaining);
 	printf(COLOR_YELLOW "Daily dose: %d\n" COLOR_RESET, dailyDose);
-	if (currentPills < 5) { 
-		showlowpillWarning(currentPills);
+	if (pillRemaining < 5) { 
+		showlowpillWarning(pillRemaining);
 	} 
 	else {
 		printf(COLOR_GREEN "✅ Stock level is sufficient.\n" COLOR_RESET);

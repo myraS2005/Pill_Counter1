@@ -37,7 +37,7 @@ bool logic_takeDose();
  * @param amount The number of pills to add.
  * @return true if refill was successful, false if amount is invalid.
  */
-bool logic_refill(int amount);
+bool logic_refill();
 
 /**
  * @brief Checks if a medication is low on stock.
