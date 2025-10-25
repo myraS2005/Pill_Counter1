@@ -69,3 +69,60 @@ int logic_findPill(const char* name) {
     }
     return -1; //not found
 }
+
+/**
+ * @brief Taking 1 dose of a medication
+ */
+bool logic_takeDose(int pillIndex) {
+    if (pillIndex < 0 || pillIndex >= numPills) {
+        printf("Error: Invalid pill index for taking dose.\n");
+        return false;
+    }
+
+    int doseAmount = medications[pillIndex].dose;
+    
+    //check if there are enough pills
+    if (g_medications[pillIndex].remaining >= doseAmount) {
+        g_medications[pillIndex].remaining -= doseAmount;
+        return true; //takes a dose
+    } else {
+        //not enough
+        return false; 
+    }
+}
+
+/**
+ * @brief Adds pills to a medication's remaining count.
+ */
+bool logic_refill(int pillIndex, int amount) {
+    if (pillIndex < 0 || pillIndex >= numPills) {
+        printf("Error: Invalid pill index for refill.\n");
+        return false;
+    }
+    
+    //must be a posiitve amount
+    if (amount <= 0) {
+        printf("Error: Refill amount must be a positive number.\n");
+        return false;
+    }
+
+    if (amount > medications[pillIndex].total){ //don't overfill over what original prescription was
+        medications[pillIndex].remaining = medications[pillIndex].total;
+    }
+    else{
+        medications[pillIndex].remaining += amount;
+    }
+    
+    return true;
+}
+
+/**
+ * @brief Checks if a medication is low on stock.
+ */
+bool logic_checkLowStock(int pillIndex) {
+    if (pillIndex < 0 || pillIndex >= numPills) {
+        return false;
+    }
+
+    return medications[pillIndex].remaining <= LOW_STOCK_THRESHOLD;
+}
