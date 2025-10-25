@@ -35,7 +35,7 @@ void printWelcomeMessage() {
         printf(COLOR_MAGENTA"💊 ============================ 💊\n\n"COLOR_RESET);
 }
 
-void showMainMenu() {
+int main() {
 	int choice;
 	do {
 		printWelcomeMessage();
@@ -80,6 +80,7 @@ void showMainMenu() {
 	        }
 
 	} while (choice != 4);
+	return 0;
 }
 
 void showlowpillWarning(int remaining) { // print warning message for less pills. 
