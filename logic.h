@@ -23,7 +23,7 @@ void logic_initialize();
  * @param remaining The current remaining pill count.
  * @param dose The daily dosage.
  */
-void logic_setValues(int remaining, int dose);
+void logic_setValues(int remaining, int dose, int prescr);
 
 /**
  * @brief Simulates taking a dose of a specific medication.

@@ -5,13 +5,14 @@
 
 #include <stdio.h>
 #include <time.h>
+#include "logic.h"
 #include "file_manager.h"
 
 // Global Variables
 // Shared by other modules (declared in headers)
 
-int pillRemaining = 0;    // Current # of pills remaining
-int dailyDose = 0;    // Pills taken per dose/day
+//int pillRemaining = 0;    // Current # of pills remaining
+//int dailyDose = 0;    // Pills taken per dose/day
 
 //Loads pill count & daily dose values from file.
 //           If file doesn't exist --> it initializes new data.
