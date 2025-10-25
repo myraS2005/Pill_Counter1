@@ -10,7 +10,7 @@
 // Global Variables
 // Shared by other modules (declared in headers)
 
-int pillCount = 0;    // Current # of pills remaining
+int pillRemaining = 0;    // Current # of pills remaining
 int dailyDose = 0;    // Pills taken per dose/day
 
 //Loads pill count & daily dose values from file.
@@ -19,17 +19,17 @@ void loadPillData() {
     FILE *file = fopen("pill_data.txt", "r");
 
     if (file == NULL) {    // No data file found (first run or missing file)
-        pillCount = 0;
+        pillRemaining = 0;
         dailyDose = 0;
         printf("📂 No existing data found. Starting fresh!\n");
         return;
     }
 
     // Try reading stored values
-    if (fscanf(file, "%d %d", &pillCount, &dailyDose) != 2) {
+    if (fscanf(file, "%d %d", &pillRemaining, &dailyDose) != 2) {
         // File  corrupted —> reset data
         printf("⚠️ Error reading data file. Resetting values.\n");
-        pillCount = 0;
+        pillRemaining = 0;
         dailyDose = 0;
     }
 
@@ -45,7 +45,7 @@ void savePillData() {
         return;
     }
 
-    fprintf(file, "%d %d", pillCount, dailyDose);
+    fprintf(file, "%d %d", pillRemaining, dailyDose);
     fclose(file);
 }
 
@@ -67,4 +67,3 @@ void logAction(const char *action) {
     fprintf(logFile, "%s - %s", action, ctime(&currentTime));
     fclose(logFile);
 }
-
