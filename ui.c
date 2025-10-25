@@ -75,8 +75,19 @@ int main() {
 		// make the choices for the user to use
 		switch (choice) {
 			case 1: 
-				logic_takeDose();
-				printf(COLOR_GREEN "✅ Dose taken successfully!\n" COLOR_RESET);
+				extern int pillRemaining;
+				extern int dailyDose;
+
+				if (pillRemaining >= dailyDose) {
+					logic_takeDose();
+					printf(COLOR_GREEN "✅ Dose taken successfully!\n" COLOR_RESET);
+				}
+				else if (pillRemaining > 0 && pillRemaining < dailyDose) {
+					printf(COLOR_RED "⚠️ Not enough pills left for a full dose! Only %d pill(s) remain.\n" COLOR_RESET, pillRemaining);
+				}
+				else {
+					printf(COLOR_RED "❌ No pills remaining! Please refill your prescription.\n" COLOR_RESET);
+				}
 				break;
 			case 2:
 				logic_refill();
