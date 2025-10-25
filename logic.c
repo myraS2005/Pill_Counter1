@@ -9,12 +9,13 @@ int dailyDose = 0;
 void logic_initialize() { //initial values
     int pillRemaining = 0;
     int dailyDose = 0;
+    int precription = 0;
 }
 
 /**
  * @brief Sets the values.
  */
-void logic_setValues(int remaining, int dose) {
+void logic_setValues(int remaining, int dose, int prescr) {
     if (remaining < 0) {
         pillRemaining = 0;
     } else {
@@ -25,6 +26,12 @@ void logic_setValues(int remaining, int dose) {
         dailyDose = 1; // Default to 1 if dose is invalid
     } else {
         dailyDose = dose;
+    }
+
+    if (prescr < 0) {
+        prescription = 0;
+    } else {
+        prescr = prescription;
     }
 }
 
