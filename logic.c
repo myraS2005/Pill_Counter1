@@ -4,12 +4,13 @@
 //from header file
 int pillRemaining = 0;
 int dailyDose = 0;
+int precription = 0
 
 //Functions
 void logic_initialize() { //initial values
-    int pillRemaining = 0;
-    int dailyDose = 0;
-    int precription = 0;
+    //pillRemaining = 0;
+    //dailyDose = 0;
+    //precription = 0;
 }
 
 /**
