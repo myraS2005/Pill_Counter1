@@ -4,6 +4,16 @@
 #include "logic.h"
 #include "file_manager.h"
 
+// define the color codes for ANSI
+#define COLOR_RESET   "\033[0m"
+#define COLOR_RED     "\033[1;31m"
+#define COLOR_GREEN   "\033[1;32m"
+#define COLOR_YELLOW  "\033[1;33m"
+#define COLOR_BLUE    "\033[1;34m"
+#define COLOR_CYAN    "\033[1;36m"
+#define COLOR_MAGENTA "\033[1;35m"
+
+// clear screen command for windows and unix 
 #ifdef _WIN32
 #define CLEAR "cls"
 #else
@@ -15,14 +25,14 @@ void clearscreen() {
 }
 
 void printDivider() {
-	printf("--------------------------------------\n");
+	printf(COLOR_CYAN "--------------------------------------\n" COLOR_RESET);
 }
 
 void printWelcomeMessage() {
 	clearscreen();
-	printf("💊 ============================ 💊\n");
-        printf("       PILL COUNTER SYSTEM      \n");
-        printf("💊 ============================ 💊\n\n");
+	printf(COLOR_MAGENTA "💊 ============================ 💊\n"COLOR_RESET);
+        printf(COLOR_BLUE "       PILL COUNTER SYSTEM      \n"COLOR_RESET);
+        printf(COLOR_MAGENTA"💊 ============================ 💊\n\n"COLOR_RESET);
 }
 
 void showMainMenu() {
@@ -31,31 +41,36 @@ void showMainMenu() {
 		printWelcomeMessage();
 		displayStatus();
 		printDivider();
-		printf("1. Take daily Dosage\n");
-		printf("2. Refill pills\n");
-        	printf("3. Check status\n");
-	        printf("4. Exit\n");
 
+		// print the options 
+		printf(COLOR_CYAN "1. Take daily dose\n" COLOR_RESET);
+        	printf(COLOR_CYAN "2. Refill pills\n" COLOR_RESET);
+        	printf(COLOR_CYAN "3. Check status\n" COLOR_RESET);
+        	printf(COLOR_CYAN "4. Exit\n" COLOR_RESET);
 		printDivider();
-        	printf("Enter your choice: ");
+
+		// wait for user_input 
+        	printf(COLOR_YELLOW "Enter your choice: " COLOR_RESET);
 	        scanf("%d", &choice);
 
 		// make the choices for the user to use
 		switch (choice) {
 			case 1: 
-				takeDose();
+				takeDosage();
+				printf(COLOR_GREEN "✅ Dose taken successfully!\n" COLOR_RESET);
 				break;
 			case 2:
 				refill();
+				printf(COLOR_GREEN "✨ Pills refilled successfully!\n" COLOR_RESET);
 				break;
 			case 3: 
 				displayStatus();
 				break;
 			case 4:
-				printf("Exiting... Stay healthy!🌿\n");
+				printf(COLOR_BLUE "Exiting... Stay healthy! 🌿\n" COLOR_RESET);
 				break;
 			default:
-				printf("❌ Invalid choice. Try again.\n");
+				printf(COLOR_RED "❌ Invalid choice. Please try again.\n" COLOR_RESET);
 		}
 
 		// check the choice entered
@@ -67,18 +82,21 @@ void showMainMenu() {
 	} while (choice != 4);
 }
 
-void showlowpillWarning( int remaining) { // print warning message for less pills. 
+void showlowpillWarning(int remaining) { // print warning message for less pills. 
 	if (remaining < 5) {
-		printf("⚠️  Warning: Only %d pills remaining! Please refill soon.\n", remaining);
+		printf(COLOR_RED "⚠️  Warning: Only %d pills remaining! Please refill soon.\n"COLOR_RESET, remaining);
 	}
 }
 void displayStatus() {
 	extern int currentPills;
 	extern int dailyDosage;
-	printf("Pills remaining: %d\n", currentPills);
-	printf("Daily dose: %d\n", dailyDosage);
-	if (currentPills < 5) {
+	printf(COLOR_YELLOW "Pills remaining: %d\n" COLOR_RESET, currentPills);
+	printf(COLOR_YELLOW "Daily dose: %d\n" COLOR_RESET, dailyDosage);
+	if (currentPills < 5) { 
 		showlowpillWarning(currentPills);
+	} 
+	else {
+		printf(COLOR_GREEN "✅ Stock level is sufficient.\n" COLOR_RESET);
 	}
 }
 
