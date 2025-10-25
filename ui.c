@@ -21,6 +21,7 @@
 #define CLEAR "clear"
 #endif
 
+// global variable
 int choice = 0;
 
 void clearscreen() {
@@ -38,8 +39,22 @@ void printWelcomeMessage() {
         printf(COLOR_MAGENTA"💊 ============================ 💊\n\n"COLOR_RESET);
 }
 
+void setPrescription() {
+	extern int pillRemaining;
+	extern int dailyDose;
+
+	printf(COLOR_YELLOW "Enter total pills in prescription: " COLOR_RESET);
+	scanf("%d", &pillRemaining);
+
+	printf(COLOR_YELLOW "Enter daily dose: " COLOR_RESET);
+	scanf("%d", &dailyDose);
+
+	savePillData(); // saves it immediately after setup
+	printf(COLOR_GREEN "\n✅ Prescription set successfully!\n" COLOR_RESET);
+}
+
 int main() {
-	//int choice;
+	loadPillData();
 	do {
 		printWelcomeMessage();
 		displayStatus();
@@ -49,7 +64,8 @@ int main() {
 		printf(COLOR_CYAN "1. Take daily dose\n" COLOR_RESET);
         	printf(COLOR_CYAN "2. Refill pills\n" COLOR_RESET);
         	printf(COLOR_CYAN "3. Check status\n" COLOR_RESET);
-        	printf(COLOR_CYAN "4. Exit\n" COLOR_RESET);
+        	printf(COLOR_CYAN "4. Set prescription\n" COLOR_RESET);
+		printf(COLOR_CYAN "5. Exit\n" COLOR_RESET);
 		printDivider();
 
 		// wait for user_input 
@@ -70,6 +86,9 @@ int main() {
 				displayStatus();
 				break;
 			case 4:
+				setPrescription();
+				break;
+			case 5: 
 				printf(COLOR_BLUE "Exiting... Stay healthy! 🌿\n" COLOR_RESET);
 				break;
 			default:
@@ -77,12 +96,12 @@ int main() {
 		}
 
 		// check the choice entered
-		if (choice != 4) {
+		if (choice != 5) {
             	       printf("\nPress Enter to continue...");
         	       getchar(); getchar(); // Wait for user input
 	        }
 
-	} while (choice != 4); 
+	} while (choice != 5); 
 	return 0;
 }
 
@@ -91,7 +110,7 @@ void showlowpillWarning(int remaining) { // print warning message for less pills
 		printf(COLOR_RED "⚠️  Warning: Only %d pills remaining! Please refill soon.\n"COLOR_RESET, remaining);
 	}
         // check the choice entered
-        if (choice != 4) {
+        if (choice != 5) {
                        printf("\nPress Enter to continue...");
                        getchar(); getchar(); // Wait for user input
         }
