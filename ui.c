@@ -4,6 +4,7 @@
 #include "logic.h"
 #include "file_manager.h"
 
+
 // define the color codes for ANSI
 #define COLOR_RESET   "\033[0m"
 #define COLOR_RED     "\033[1;31m"
@@ -56,11 +57,11 @@ void showMainMenu() {
 		// make the choices for the user to use
 		switch (choice) {
 			case 1: 
-				takeDosage();
+				logic_takeDose();
 				printf(COLOR_GREEN "✅ Dose taken successfully!\n" COLOR_RESET);
 				break;
 			case 2:
-				refill();
+				logic_refill();
 				printf(COLOR_GREEN "✨ Pills refilled successfully!\n" COLOR_RESET);
 				break;
 			case 3: 
@@ -97,11 +98,11 @@ void showlowpillWarning(int remaining) { // print warning message for less pills
 
         } while (choice != 4);
 }
-void displayStatus() {
-	extern int currentPills;
-	extern int dailyDosage;
-	printf(COLOR_YELLOW "Pills remaining: %d\n" COLOR_RESET, currentPills);
-	printf(COLOR_YELLOW "Daily dose: %d\n" COLOR_RESET, dailyDosage);
+void displayStatus() { // show the status of the total pills and dose.
+	extern int pillRemaining;
+	extern int dailyDose;
+	printf(COLOR_YELLOW pillRemaining"Pills remaining: %d\n" COLOR_RESET, currentPills);
+	printf(COLOR_YELLOW "Daily dose: %d\n" COLOR_RESET, dailyDose);
 	if (currentPills < 5) { 
 		showlowpillWarning(currentPills);
 	} 
