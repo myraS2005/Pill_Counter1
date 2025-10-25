@@ -87,6 +87,16 @@ void showlowpillWarning(int remaining) { // print warning message for less pills
 		printf(COLOR_RED "⚠️  Warning: Only %d pills remaining! Please refill soon.\n"COLOR_RESET, remaining);
 	}
 }
+ }
+
+                // check the choice entered
+                if (choice != 4) {
+                       printf("\nPress Enter to continue...");
+                       getchar(); getchar(); // Wait for user input
+                }
+
+        } while (choice != 4);
+}
 void displayStatus() {
 	extern int currentPills;
 	extern int dailyDosage;
