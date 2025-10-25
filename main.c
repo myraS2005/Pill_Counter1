@@ -20,7 +20,7 @@ int main() {
     // Save pill data before exiting
     savePillData();  
 
-    printf("💾 Data saved successfully. Goodbye!\n");
+    printf("Data saved successfully. Goodbye!\n");
 
     return 0;
 }
