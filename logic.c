@@ -1,4 +1,5 @@
 #include "logic.h"
+#include "file_manager.h"
 #include <stdio.h>
 
 //from header file
@@ -32,7 +33,7 @@ void logic_setValues(int remaining, int dose, int prescr) {
     if (prescr < 0) {
         prescription = 0;
     } else {
-        prescr = prescription;
+        prescription = prescr;
     }
 }
 
@@ -54,6 +55,7 @@ bool logic_takeDose() {
 bool logic_refill() {
     //must be a posiitve amount
     pillRemaining = prescription;
+    printf("%d\n", prescription);
 }
 
 /**

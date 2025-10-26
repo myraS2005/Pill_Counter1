@@ -75,8 +75,8 @@ int main() {
 		// make the choices for the user to use
 		switch (choice) {
 			case 1: 
-				extern int pillRemaining;
-				extern int dailyDose;
+				//extern int pillRemaining;
+				//extern int dailyDose;
 
 				if (pillRemaining >= dailyDose) {
 					logic_takeDose();
@@ -129,8 +129,8 @@ void showlowpillWarning(int remaining) { // print warning message for less pills
 }
 
 void displayStatus() { // show the status of the total pills and dose.
-	extern int pillRemaining;
-	extern int dailyDose;
+	//extern int pillRemaining;
+	//extern int dailyDose;
 	printf(COLOR_YELLOW "Pills remaining: %d\n" COLOR_RESET, pillRemaining);
 	printf(COLOR_YELLOW "Daily dose: %d\n" COLOR_RESET, dailyDose);
 	if (pillRemaining < 5) { 
